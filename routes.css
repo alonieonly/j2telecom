@@ -1,0 +1,156 @@
+.routes-container {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 150px;
+    background-color: #abd9c4;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.routes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+    overflow-y: scroll;
+}
+
+tbody {
+    height: 100%;
+}
+
+.table-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+
+.table-container .table-labels {
+    width: 1200px;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table-container .table-labels td {
+    width: 20%;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-right: 2px solid blue;
+    border-bottom: 2px solid blue;
+    background-color: rgb(24, 216, 24);
+}
+
+.table-container .table-labels td:last-child {
+    border-right: none;
+}
+
+.table-container tr {
+    width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+tr td {
+    width: 20%; /* Adicionando esta linha */
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(0, 0, 0);
+    border-right: 2px solid blue;
+    background-color: white;
+    padding: 5px;
+    overflow: hidden;
+    padding: 15px;
+}
+
+tr td:last-child {
+    border-right: none;
+}
+
+.new-route-container {
+    color: white;
+    font-size: 48px;
+    margin-left: 19%;
+}
+
+.new-route-container:hover {
+    cursor: pointer;
+    color: rgb(244, 244, 244);
+}
+
+.new-route-label {
+    text-decoration: underline;
+}
+
+.pop-up-container {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    background-color: #07658b;
+    width: 25%;
+    height: 60%;
+    gap: 35px;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    align-self: center;
+}
+
+.img-close {
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    display: flex;
+    align-self: flex-end;
+    margin: 10px;
+}
+
+.img-close:hover {
+    cursor: pointer;
+}
+
+.pop-up-container span {
+    margin-top: 50px;
+    color: white;
+    font-size: 24px;
+}
+
+.form-add {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-add input {
+    background-color: #64bf72;
+    outline: none;
+    border: none;
+    height: 35px;
+    padding: 5px;
+    font-size: 24px;
+    color: white;
+}
+
+.form-add input::placeholder {
+    color: rgb(213, 213, 213);
+}
+
+.button-insert {
+    background-color: #62bf93;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 24px;
+}
