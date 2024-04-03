@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotas</title>
+    <link rel="stylesheet" type="text/css" href="style-geral.css">
+    <link rel="stylesheet" type="text/css" href="home.css">
+</head>
+<body>
+    <div class="header">
+        <a href="home.php" class="container-logo">
+            <img src="assets/logo.jpg" alt="" class="logo-header">
+        </a>
+        <div class="rotas-container">
+            <a href="routes.php">ROTAS</a>
+        </div>
+        <div class="cadastro-container">
+            <a href="clients.php">CLIENTES</a>
+        </div>
+        <a href="login.php" class="user-container">
+            <img src="assets/user.png" alt="" class="user">
+        </a>
+    </div>
+
+    <div class="home">
+        <div class="nav-bar">HOME > CLIENTES</div>
+    </div>
+</body>
+</html>
