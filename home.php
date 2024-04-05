@@ -1,9 +1,16 @@
+<?php
+    require_once("conn.php");
+    require_once("Usuario.php");
+    session_start();
+    $objeto = $_SESSION["logged_user"];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rotas</title>
+    <title>Home</title>
     <link rel="stylesheet" type="text/css" href="style-geral.css">
     <link rel="stylesheet" type="text/css" href="home.css">
 </head>
@@ -18,9 +25,9 @@
         <div class="cadastro-container">
             <a href="clients.php">CLIENTES</a>
         </div>
-        <a href="login.php" class="user-container">
+        <div class="user-container" onclick="showinfos()">
             <img src="assets/user.png" alt="" class="user">
-        </a>
+        </div>
     </div>
 
     <div class="home">
@@ -34,7 +41,32 @@
                 <span class="label-routes">Clientes</span>
             </a>
         </div>
-           
+        <div class="pop-up-exit">
+            <img src="assets/close.png" alt="" class="img-close" onclick="hideinfos()">
+            <img src="assets/user.png" alt="" class="img-user">
+            <span>Nome: <?php echo $objeto->getLogin(); ?></span>
+            <span>Cargo: <?php if ($objeto->getisadmin() == 1) {
+                echo "Admin";
+            } else {
+                echo "Operador";
+            }
+            ?></span>
+
+            <a href="resetconn.php">
+                <img src="assets/exit.png" alt="" class="img-exit" onclick="hideaddroute()">
+            </a>
+        </div>
     </div>
+    
+    <script>
+        function showinfos() {
+            var popup = document.getElementsByClassName("pop-up-exit")[0];
+            popup.style.display = 'flex'
+        }
+        function hideinfos() {
+            var popup = document.getElementsByClassName("pop-up-exit")[0];
+            popup.style.display = 'none'
+        }
+    </script>
 </body>
 </html>

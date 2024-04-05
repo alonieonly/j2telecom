@@ -72,8 +72,14 @@
     justify-content: center;
     width: 100px;
     padding: 10px;
-    background-color: #67be74;
+    background: #65BF73;
     color: black;
     font-family: Arial, Helvetica, sans-serif;
+    border: none;
+    margin-top: 15px;
+    border-radius: 5px;
 }
 
+.send-button:hover {
+    cursor: pointer;
+}

@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    gap: 150px;
+    gap: 50px;
     background-color: #abd9c4;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -14,7 +14,7 @@
     align-items: center;
     justify-content: center;
     height: 50%;
-    overflow-y: scroll;
+    
 }
 
 tbody {
@@ -24,7 +24,13 @@ tbody {
 .nav-bar {
     color: white;
     margin-left: 1%;
+    margin-top: -10%;
     font-size: 24px;
+}
+
+.nav-bar a {
+    text-decoration: none;
+    color: white;
 }
 
 .table-container {
@@ -32,7 +38,8 @@ tbody {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100%;
+    height: 45vh;
+    overflow-y: scroll;
 }
 
 
@@ -51,9 +58,9 @@ tbody {
     align-items: center;
     justify-content: center;
     color: white;
-    border-right: 2px solid blue;
-    border-bottom: 2px solid blue;
-    background-color: rgb(24, 216, 24);
+    background: #0367A680;
+    border-bottom: 1px solid transparent;
+    padding: 5px 10px;
 }
 
 .table-container .table-labels td:last-child {
@@ -70,16 +77,15 @@ tbody {
 
 tr td {
     width: 20%; /* Adicionando esta linha */
-    height: 70%;
+    height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: rgb(0, 0, 0);
-    border-right: 2px solid blue;
-    background-color: white;
-    padding: 5px;
+    background-color: transparent;
+    border-bottom: 1px solid black;
     overflow: hidden;
-    padding: 15px;
+    padding: 10px
 }
 
 tr td:last-child {
@@ -88,8 +94,8 @@ tr td:last-child {
 
 .new-route-container {
     color: white;
-    font-size: 48px;
-    margin-left: 19%;
+    font-size: 24px;
+    margin-left: 10%;
 }
 
 .new-route-container:hover {
@@ -112,6 +118,46 @@ tr td:last-child {
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
     align-self: center;
+}
+
+
+.pop-up-confirm { 
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    background-color: #07658b;
+    width: 20%;
+    height: 20%;
+    gap: 35px;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    align-self: center;
+    padding: 5px 10px;
+}
+
+
+.pop-up-confirm .text {
+    color: white;
+    font-size: 24px;
+
+}
+
+.pop-up-confirm .buttons {
+    display: flex;
+    gap: 150px;
+}
+
+.pop-up-confirm button {
+    background: #65BF73;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+}
+
+.pop-up-confirm button:hover {
+   cursor: pointer;
 }
 
 .img-close {
@@ -159,4 +205,43 @@ tr td:last-child {
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     font-size: 24px;
+}
+
+.img-table {
+    width: 20px;
+    height: 20px;
+}
+
+.img-table:hover {
+    cursor: pointer;
+}
+
+
+.pop-up-exit {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    background-color: #07658b;
+    width: 25%;
+    height: 60%;
+    gap: 40px;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    align-self: center;
+}
+
+.pop-up-exit span {
+    font-size: 40px;
+    color: white;
+}
+
+.img-user {
+    height: 150px;
+    width: 150px;
+    margin-top: 50px;
+}
+
+.img-exit {
+    height: 66px;
+    width: 66px;
 }
