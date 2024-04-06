@@ -5,7 +5,7 @@
     session_set_cookie_params($vida_da_sessao);
     session_start();
 
-    if (isset($_SESSION["logged_user"])) {
+    if (isset($_COOKIE["user"])) {
         header("Location: http://localhost/inter-2024/home.php");
     }
     if (isset($_POST["user"]) && isset($_POST["pass"])) {
@@ -41,6 +41,7 @@
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="style-geral.css">
     <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="shortcut icon" type="imagex/png" href="assets/j2.png">
 </head>
 <body>
     <div class="container-login">

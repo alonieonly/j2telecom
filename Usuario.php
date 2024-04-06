@@ -21,9 +21,5 @@ class Usuario {
     public function getisadmin() {
         return $this->isadmin;
     }
-
-    public function exibirTipo() {
-        echo "Tipo: Usuário comum<br>";
-    }
 }
 

@@ -1,4 +1,7 @@
 <?php
+    if (!isset($_COOKIE["user"])) {
+        header("Location: http://localhost/inter-2024/login.php");
+    }
     require_once("conn.php");
     require_once("Usuario.php");
     session_start();
@@ -7,6 +10,10 @@
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $table = $result;
+    }
+    $resulta = $conn->query($sql);
+    if ($resulta->num_rows > 0) {
+        $tablea = $resulta;
     }
     function Redirect($url, $permanent = false)
     {
@@ -31,19 +38,19 @@
         Redirect('http://localhost/inter-2024/clients.php', false);
     }
 
-    if (isset($_POST["querycod"])) {
-        $cod = mysqli_real_escape_string($conn, $_POST["querycod"]);
-        $sqla = "SELECT * FROM clientes WHERE cod = '$cod'";
-        $resulta = $conn->query($sqla);
-        if ($resulta->num_rows > 0) {
-            $_SESSION["table_form"] = mysqli_fetch_assoc($resulta);
-            http_response_code(200);
-        } else {
-            http_response_code(404);
-        }
-    } else {
-        http_response_code(400);
-    }
+    // if (isset($_POST["querycod"])) {
+    //     $cod = mysqli_real_escape_string($conn, $_POST["querycod"]);
+    //     $sqla = "SELECT * FROM clientes WHERE cod = '$cod'";
+    //     $resulta = $conn->query($sqla);
+    //     if ($resulta->num_rows > 0) {
+    //         $_SESSION["table_form"] = mysqli_fetch_assoc($resulta);
+    //         http_response_code(200);
+    //     } else {
+    //         http_response_code(404);
+    //     }
+    // } else {
+    //     http_response_code(400);
+    // }
     if (isset($_POST["edit-nome"]) && isset($_POST["edit-rua"]) && isset($_POST["edit-numero"]) && isset($_POST["edit-comp"]) && isset($_POST["edit-contato"]) && isset($_POST["edit-rota"])) {
         $edit_nome = $_POST["edit-nome"];
         $edit_rua = $_POST["edit-rua"];
@@ -78,6 +85,7 @@
     <title>Clientes</title>
     <link rel="stylesheet" type="text/css" href="style-geral.css">
     <link rel="stylesheet" type="text/css" href="clients.css">
+    <link rel="shortcut icon" type="imagex/png" href="assets/j2.png">
 </head>
 <body>
     <div class="header">
@@ -149,50 +157,50 @@
             <form class="form-add" id="myForm" method="post" action="">
                 <input type="text" placeholder="NOME" name="nome">
                 <input type="text" placeholder="RUA" name="rua">
-                <input type="text" placeholder="NUMERO" name="numero">
+                <input type="number" placeholder="NUMERO" name="numero">
                 <input type="text" placeholder="COMPLEMENTO" name="comp">
-                <input type="text" placeholder="CONTATO" name="contato">
-                <input type="text" placeholder="ROTA" name="rota">
+                <input type="text" placeholder="CONTATO" name="contato" oninput="formatarTelefone(this)">
+                <input type="number" placeholder="ROTA" name="rota">
             </form>
             <button type="button" onclick="submitForm()" class="button-insert">INSERIR</button>
         </div>
-        <div class="pop-up-edit">
-            <img src="assets/close.png" alt="" class="img-close" onclick="hideedit()">
-            <span>CLIENTE</span>
-            <form class="form-edit" id="myFormEdit" method="post" action="">
-                <?php
-                    if (isset($_SESSION["table_form"])){ 
-                        $nome = $_SESSION["table_form"]["nome"];
-                        $rua = $_SESSION["table_form"]["rua"];
-                        $numero = $_SESSION["table_form"]["numero"];
-                        $complemento = $_SESSION["table_form"]["complemento"];
-                        $contato = $_SESSION["table_form"]["contato"];
-                        $rota = $_SESSION["table_form"]["rota"];
-                        $cod = $_SESSION["table_form"]["cod"];
-                        echo "<input type=\"text\" placeholder=\"NOME\" name=\"edit-nome\" value=\"$nome\">";
-                        echo "<input type=\"text\" placeholder=\"RUA\" name=\"edit-rua\" value=\"$rua\">";
-                        echo "<input type=\"number\" placeholder=\"numero\" name=\"edit-numero\" value=\"$numero\">";
-                        echo "<input type=\"text\" placeholder=\"complemento\" name=\"edit-comp\" value=\"$complemento\">";
-                        echo "<input type=\"text\" placeholder=\"contato\" name=\"edit-contato\" value=\"$contato\">";
-                        echo "<input type=\"number\" placeholder=\"rota\" name=\"edit-rota\" value=\"$rota\">";
-                        echo "<input type=\"text\" placeholder=\"cod\" style=\"display:none;\" name=\"edit-cod\" value=\"$cod\">";
-                    }
-                ?>
-            </form>
-            <div class="buttons-container">
-                <button type="button" class="button-insert" onclick="submitFormEdit()">EDITAR</button>
-                <?php
-                    $cod = $_SESSION["table_form"]["cod"];
-                    echo "<button type=\"button\" class=\"button-insert\" onclick=\"submitFormDelete($cod)\">EXCLUIR</button>"
-                ?>
-            </div>
-                
-        </div>
+        
+        <?php
+            if (isset($tablea)) {
+                for($h=0;$h<$tablea->num_rows;$h++) {
+                    $linha2 = mysqli_fetch_assoc($tablea);
+                    $nome = $linha2["nome"];
+                    $rua = $linha2["rua"];
+                    $numero = $linha2["numero"];
+                    $complemento = $linha2["complemento"];
+                    $contato = $linha2["contato"];
+                    $rota = $linha2["rota"];
+                    $codigo = $linha2["cod"];
+                    echo "<div class=\"pop-up-edit show-$codigo\">";
+                    echo    "<img src=\"assets/close.png\" alt=\"\" class=\"img-close\" onclick=\"hideedit()\">";
+                    echo    "<span>CLIENTE</span>";
+                    echo    "<form class=\"form-edit\" id=\"edit-$codigo\" method=\"post\" action=\"\">";
+                    echo        "<input type=\"text\" placeholder=\"NOME\" name=\"edit-nome\" value=\"$nome\">";
+                    echo        "<input type=\"text\" placeholder=\"RUA\" name=\"edit-rua\" value=\"$rua\">";
+                    echo         "<input type=\"number\" placeholder=\"numero\" name=\"edit-numero\" value=\"$numero\">";
+                    echo        "<input type=\"text\" placeholder=\"complemento\" name=\"edit-comp\" value=\"$complemento\">";
+                    echo        "<input type=\"text\" placeholder=\"contato\" name=\"edit-contato\" value=\"$contato\" oninput=\"formatarTelefone(this)\">";
+                    echo        "<input type=\"number\" placeholder=\"rota\" name=\"edit-rota\" value=\"$rota\">";
+                    echo        "<input type=\"text\" placeholder=\"cod\" style=\"display:none;\" name=\"edit-cod\" value=\"$codigo\">";
+                    echo    "</form>";
+                    echo    "<div class=\"buttons-container\">";
+                    echo        "<button type=\"button\" class=\"button-insert\" onclick=\"submitFormEdit($codigo)\">EDITAR</button>";
+                    echo        "<button type=\"button\" class=\"button-insert\" onclick=\"submitFormDelete($codigo)\">EXCLUIR</button>";
+                    echo    "</div>";
+                    echo "</div>";
+                }
+            }
+            ?>
         <div class="pop-up-exit">
             <img src="assets/close.png" alt="" class="img-close" onclick="hideinfos()">
             <img src="assets/user.png" alt="" class="img-user">
             <span>Nome: <?php echo $objeto->getLogin(); ?></span>
-            <span>Cargo: <?php if ($objeto->getisadmin() == 1) {
+            <span>Função: <?php if ($objeto->getisadmin() == 1) {
                 echo "Admin";
             } else {
                 echo "Operador";
@@ -215,11 +223,7 @@
             popup.style.display = 'none'
         }
         function showedit(id) {
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'clients.php', true);
-            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            xhr.send(`querycod=${id}`);
-            var popup = document.getElementsByClassName("pop-up-edit")[0];
+            var popup = document.getElementsByClassName("show-"+id)[0];
             popup.style.display = 'flex'
         }
         function hideedit() {
@@ -238,8 +242,8 @@
         function submitForm() {
             document.getElementById("myForm").submit();
         }
-        function submitFormEdit() {
-            document.getElementById("myFormEdit").submit();
+        function submitFormEdit(id) {
+            document.getElementById("edit-"+id).submit();
         }
         function submitFormDelete(id) {
             var xhr = new XMLHttpRequest();
@@ -254,6 +258,20 @@
             };
             xhr.send('deleteid=' + id);
             hideedit();
+        }
+        function formatarTelefone(input) {
+            var phoneNumber = input.value.replace(/\D/g, '');
+
+            var tamanho = phoneNumber.length;
+            if (tamanho == 11) {
+                phoneNumber = phoneNumber.replace(/^(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+            } else if (tamanho == 10) {
+                phoneNumber = phoneNumber.replace(/^(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+            } else {
+                phoneNumber = phoneNumber.replace(/^(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+            }
+
+            input.value = phoneNumber;
         }
     </script>
 </body>

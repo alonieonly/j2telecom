@@ -112,7 +112,7 @@ tr td:last-child {
     flex-direction: column;
     position: absolute;
     background-color: #07658b;
-    width: 25%;
+    width: 50%;
     height: 60%;
     gap: 35px;
     align-items: center;
@@ -139,7 +139,7 @@ tr td:last-child {
 
 .pop-up-confirm .text {
     color: white;
-    font-size: 24px;
+    font-size: 20px;
 
 }
 
@@ -180,19 +180,21 @@ tr td:last-child {
 }
 
 .form-add {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2,23rem);
     flex-direction: column;
-    gap: 10px;
+    gap: 50px;
 }
 
 .form-add input {
-    background-color: #64bf72;
+    background-color: #65BF73;
     outline: none;
     border: none;
-    height: 35px;
-    padding: 5px;
+    height: 60px;
     font-size: 24px;
     color: white;
+    border-radius: 5px;
+    padding: 0px 5px;
 }
 
 .form-add input::placeholder {
@@ -200,13 +202,19 @@ tr td:last-child {
 }
 
 .button-insert {
-    background-color: #62bf93;
+    background: #65BF73;
     padding: 20px;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     font-size: 24px;
+    border: none;
+    border-radius: 10px;
 }
 
+.button-insert:hover {
+    cursor: pointer;
+    background: #87beb8;
+}
 .img-table {
     width: 20px;
     height: 20px;

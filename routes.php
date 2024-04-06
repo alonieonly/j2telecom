@@ -1,4 +1,7 @@
 <?php
+    if (!isset($_COOKIE["user"])) {
+        header("Location: http://localhost/inter-2024/login.php");
+    }
     require_once("conn.php");
     require_once("Usuario.php");
     session_start();
@@ -52,6 +55,7 @@
     <title>Rotas</title>
     <link rel="stylesheet" type="text/css" href="style-geral.css">
     <link rel="stylesheet" type="text/css" href="routes.css">
+    <link rel="shortcut icon" type="imagex/png" href="assets/j2.png">
 </head>
 <body>
     <div class="header">
@@ -129,14 +133,14 @@
         <div class="pop-up-container">
             <img src="assets/close.png" alt="" class="img-close" onclick="hideaddroute()">
             <span>INSERIR NOVA ROTA</span>
-            <form class="form-add" method="post" action="">
+            <form class="form-add" id="myForm" method="post" action="">
                 <input type="text" placeholder="Rua" name="rua">
-                <input type="text" placeholder="QTD CAIXAS" name="qtdc">
+                <input type="number" placeholder="QTD CAIXAS" name="qtdc">
                 <input type="text" placeholder="REFERÊNCIA" name="ref">
-                <input type="text" placeholder="VAGAS" name="vagas">
+                <input type="number" placeholder="VAGAS" name="vagas">
                 <input type="text" placeholder="TIPO SPRINT" name="sprint">
-                <input type="submit" class="button-insert" value="INSERIR">
             </form>
+            <button type="button" onclick="submitForm()" class="button-insert">INSERIR</button>
         </div>
         <div class="pop-up-confirm">
             <div class="text">
@@ -151,7 +155,7 @@
             <img src="assets/close.png" alt="" class="img-close" onclick="hideinfos()">
             <img src="assets/user.png" alt="" class="img-user">
             <span>Nome: <?php echo $objeto->getLogin(); ?></span>
-            <span>Cargo: <?php if ($objeto->getisadmin() == 1) {
+            <span>Função: <?php if ($objeto->getisadmin() == 1) {
                 echo "Admin";
             } else {
                 echo "Operador";
@@ -209,6 +213,9 @@
             };
             xhr.send('ruaid=' + rua);
             hideconfirm();
+        }
+        function submitForm() {
+            document.getElementById("myForm").submit();
         }
     </script>
 </body>

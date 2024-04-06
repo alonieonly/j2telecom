@@ -3,6 +3,9 @@
     require_once("Usuario.php");
     session_start();
     $objeto = $_SESSION["logged_user"];
+    if (!isset($_COOKIE["user"])) {
+        header("Location: http://localhost/inter-2024/login.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +16,7 @@
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="style-geral.css">
     <link rel="stylesheet" type="text/css" href="home.css">
+    <link rel="shortcut icon" type="imagex/png" href="assets/j2.png">
 </head>
 <body>
     <div class="header">
@@ -45,7 +49,7 @@
             <img src="assets/close.png" alt="" class="img-close" onclick="hideinfos()">
             <img src="assets/user.png" alt="" class="img-user">
             <span>Nome: <?php echo $objeto->getLogin(); ?></span>
-            <span>Cargo: <?php if ($objeto->getisadmin() == 1) {
+            <span>Função: <?php if ($objeto->getisadmin() == 1) {
                 echo "Admin";
             } else {
                 echo "Operador";
