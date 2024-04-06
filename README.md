@@ -28,8 +28,4 @@ Este é um projeto desenvolvido como parte de um trabalho acadêmico para o inte
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue para relatar problemas, sugestões ou melhorias. 🚀
 
-## Autor
-
-[Seu Nome]
-
 ---
